@@ -30,7 +30,7 @@ Para uma captura própria, escolha um novo diretório de saída em um local priv
 node bin/evidence-scrub.mjs /privado/captura.har --out /privado/pacote-para-revisao
 ```
 
-O diretório de saída não pode existir. O arquivo original permanece inalterado.
+O diretório de saída não pode existir e seu diretório pai precisa existir. O arquivo original permanece inalterado.
 
 ## Um exemplo pequeno
 
@@ -81,6 +81,8 @@ A saída é reconstruída a partir de um conjunto conservador de campos suportad
 | Métodos, status e horários suportados | Preservados ou normalizados |
 | Estatísticas numéricas suportadas do protocolo | Preservadas |
 
+A saída é uma projeção para revisão, não uma requisição pronta para replay nem uma transcrição sem alterações. Tamanhos de corpos removidos viram `0`; tamanho desconhecido de cabeçalhos vira `-1`; métodos não suportados viram `OTHER`; versões inválidas ficam vazias; status e tempos inválidos usam marcadores `0` ou `-1`. Datas HAR inválidas ou ausentes são rejeitadas. Esses valores descrevem o artefato transformado, e não devem ser apresentados como fatos originais da captura.
+
 ### Preserve caminhos quando forem necessários
 
 A estrutura de uma rota pode ajudar a explicar um bug. `--keep-paths` preserva o caminho da URL e mantém as demais ocultações:
@@ -115,15 +117,13 @@ Sem `--github`, o processamento permanece local.
 
 ## Limites e revisão
 
-- O limite de entrada é de **20 MiB**. Há limites adicionais para texto HTTP, número de registros, cabeçalhos e tamanhos de campos; estruturas inválidas ou grandes demais são rejeitadas.
+- O limite de arquivos HAR é de **20 MiB**; para HTTP bruto, o limite é de **2 MiB de bytes UTF-8**. Há limites adicionais para registros, cabeçalhos e tamanhos de campos. Entradas de nível superior não suportadas e estruturas acima desses limites são rejeitadas; campos HAR desconhecidos e linhas individuais de cabeçalhos HTTP malformadas podem ser descartados.
 - Metadados preservados ainda podem conter informações sensíveis. Revise a captura tratada, o relatório, o resumo e os metadados opcionais antes de compartilhar.
 - A opção `--keep-paths` preserva mais informações de forma deliberada.
 - Mantenha as capturas originais privadas. Use exemplos sintéticos ao relatar problemas nesta ferramenta.
 - O pacote gerado é um ponto de partida para revisão humana; não representa autorização para divulgar evidências.
 
 ## Desenvolvimento
-
-A saída é uma projeção para revisão, não uma requisição pronta para replay nem uma transcrição sem alterações. Tamanhos de corpos removidos viram `0`; tamanho desconhecido de cabeçalhos vira `-1`; métodos não suportados viram `OTHER`; versões inválidas ficam vazias; status e tempos inválidos usam marcadores `0` ou `-1`. Datas HAR inválidas ou ausentes são rejeitadas. Esses valores descrevem o artefato transformado, e não devem ser apresentados como fatos originais da captura.
 
 ```sh
 node --test

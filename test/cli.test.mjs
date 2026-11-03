@@ -98,6 +98,16 @@ test('keep-paths is an explicit, recorded choice', async (t) => {
   assert.equal(summary.policy.keepPaths, true);
 });
 
+test('raw HTTP has a clear 2 MiB byte limit, including multibyte input', async (t) => {
+  const directory = await sandbox(t);
+  const input = join(directory, 'oversized.http');
+  await writeFile(input, 'POST / HTTP/1.1\r\n\r\n' + 'é'.repeat(1_100_000));
+  const result = run(input, '--out', join(directory, 'clean'));
+  assert.equal(result.status, 1);
+  assert.match(result.stderr, /HTTP captures are limited to 2 MiB/);
+  assert.deepEqual(await readdir(directory), ['oversized.http']);
+});
+
 test('unknown flags are rejected without echoing their values', () => {
   const result = run('--DO_NOT_ECHO_CANARY');
   assert.equal(result.status, 1);

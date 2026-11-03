@@ -231,6 +231,7 @@ export function sanitizeHttp(text, options = {}) {
   try {
     const cleanOptions = optionsFor(options);
     boundedString(text, MAX_HTTP);
+    if (new TextEncoder().encode(text).length > MAX_HTTP) throw new Error();
     const stats = newStats();
     const lines = text.replace(/\r\n/g, '\n').split('\n');
     const start = lines.shift();

@@ -24,7 +24,7 @@ Options:
 
 Default processing is offline. No raw captures are copied into the bundle.
 Output: sanitized.har or sanitized.http, report.md, summary.json,
-and optional github.json. Maximum input size: 20 MiB.
+and optional github.json. HAR input: at most 20 MiB. Raw HTTP: at most 2 MiB.
 Review all output before sharing; this is not a complete PII detector.
 `;
 
@@ -69,6 +69,7 @@ async function main() {
   }
   const text = raw.toString('utf8').replace(/^\uFEFF/, '');
   const format = args.values.format ?? (text.trimStart().startsWith('{') ? 'har' : 'http');
+  if (format === 'http' && raw.length > 2 * 1024 * 1024) throw new Error('HTTP captures are limited to 2 MiB. No output was written.');
   const options = { keepPaths: args.values['keep-paths'] };
   let result;
   try {

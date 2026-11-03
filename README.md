@@ -30,7 +30,7 @@ For your own capture, choose a new output directory in a private location:
 node bin/evidence-scrub.mjs /private/capture.har --out /private/review-bundle
 ```
 
-The output directory must not already exist. The original input remains unchanged.
+The output directory must not already exist, and its parent directory must exist. The original input remains unchanged.
 
 ## A small example
 
@@ -119,7 +119,7 @@ Without `--github`, processing stays local.
 
 ## Limits and review
 
-- Input files are limited to **20 MiB**. Additional parser limits apply to HTTP text, entry counts, headers, and field sizes; malformed or oversized structures are rejected.
+- HAR input files are limited to **20 MiB**; raw HTTP input is limited to **2 MiB of UTF-8 bytes**. Additional limits apply to entry counts, headers, and field sizes. Unsupported top-level input and structures beyond these bounds are rejected; unknown HAR fields and malformed individual HTTP header lines can be discarded.
 - Supported metadata may still contain sensitive information. Review the redacted capture, report, summary, and optional repository metadata before sharing them.
 - `--keep-paths` deliberately retains more information.
 - Keep original captures private. Use synthetic examples when reporting a problem with this tool.
