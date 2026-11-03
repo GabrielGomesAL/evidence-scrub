@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="620" viewBox="0 0 1200 620" role="img" aria-labelledby="title desc">
+  <title id="title">evidence-scrub: HTTP evidence, with less to leak</title>
+  <desc id="desc">A synthetic HTTP request containing demo credentials becomes a redacted review artifact. Processing is local by default and has no package dependencies.</desc>
+  <rect width="1200" height="620" rx="24" fill="#0b1220"/>
+  <rect x="40" y="38" width="36" height="36" rx="10" fill="#a7f3d0"/>
+  <path d="M50 51l8-5 8 5v9l-8 6-8-6z" fill="none" stroke="#0b1220" stroke-width="2.5"/>
+  <text x="90" y="64" fill="#e2e8f0" font-family="Arial, sans-serif" font-size="25" font-weight="700">evidence-scrub</text>
+  <text x="40" y="137" fill="#f8fafc" font-family="Arial, sans-serif" font-size="43" font-weight="700">HTTP evidence, with less to leak.</text>
+  <text x="42" y="176" fill="#94a3b8" font-family="Arial, sans-serif" font-size="21">Conservative redaction. Inspectable report bundles. Local by default.</text>
+  <rect x="40" y="220" width="538" height="284" rx="14" fill="#151f30" stroke="#334155"/>
+  <rect x="620" y="220" width="540" height="284" rx="14" fill="#102b29" stroke="#357269"/>
+  <circle cx="64" cy="248" r="5" fill="#fb7185"/>
+  <text x="79" y="254" fill="#fda4af" font-family="Arial, sans-serif" font-size="16" font-weight="700">INPUT · SYNTHETIC EXAMPLE</text>
+  <circle cx="644" cy="248" r="5" fill="#6ee7b7"/>
+  <text x="659" y="254" fill="#a7f3d0" font-family="Arial, sans-serif" font-size="16" font-weight="700">OUTPUT · REVIEW ARTIFACT</text>
+  <g font-family="Consolas, monospace" font-size="17" fill="#e2e8f0">
+    <text x="62" y="298">POST /accounts/DEMO_ID?token=DEMO</text>
+    <text x="62" y="332">Host: tenant.example.invalid</text>
+    <text x="62" y="366" fill="#fda4af">Authorization: Bearer DEMO_TOKEN</text>
+    <text x="62" y="400" fill="#fda4af">Cookie: session=DEMO_COOKIE</text>
+    <text x="62" y="450" fill="#fda4af">{"password":"DEMO_PASSWORD"}</text>
+    <text x="642" y="298">POST /[REDACTED_PATH]?param1=[REDACTED]</text>
+    <text x="642" y="332">Host: [REDACTED]</text>
+    <text x="642" y="366" fill="#a7f3d0">Authorization: [REDACTED]</text>
+    <text x="642" y="400" fill="#a7f3d0">Cookie: [REDACTED]</text>
+    <text x="642" y="450" fill="#94a3b8">Body removed · query values redacted</text>
+  </g>
+  <g font-family="Arial, sans-serif" font-size="17" fill="#cbd5e1">
+    <text x="42" y="550">Node.js 22+</text><text x="240" y="550">Zero dependencies</text><text x="492" y="550">HAR + raw HTTP</text><text x="750" y="550">Markdown + JSON bundle</text>
+    <text x="42" y="590" fill="#64748b" font-size="15">Illustrated synthetic example. Review every output before sharing. Not a universal personal-data detector.</text>
+  </g>
+</svg>

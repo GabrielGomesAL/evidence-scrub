@@ -1,0 +1,28 @@
+{
+  "tool": "evidence-scrub",
+  "version": "0.1.0",
+  "format": "har",
+  "source": {
+    "sha256": "2339cf069d314a484e0dda4915061834460ccc342d97d6b905ada80bd7ea3d40",
+    "bytes": 1863
+  },
+  "policy": {
+    "keepPaths": false,
+    "networkOptIn": false
+  },
+  "stats": {
+    "entries": 1,
+    "urls": 1,
+    "queryValues": 2,
+    "headersRedacted": 3,
+    "headersRemoved": 0,
+    "cookiesRemoved": 3,
+    "bodiesRemoved": 2,
+    "pathsRedacted": 1
+  },
+  "files": [
+    "sanitized.har",
+    "report.md",
+    "summary.json"
+  ]
+}
