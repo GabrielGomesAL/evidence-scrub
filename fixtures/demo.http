@@ -1,0 +1,8 @@
+POST /accounts/DEMO_ACCOUNT/export?token=DEMO_QUERY_TOKEN HTTP/1.1
+Host: tenant.example.invalid
+Authorization: Bearer DEMO_BEARER_TOKEN
+Cookie: session=DEMO_COOKIE
+Content-Type: application/json
+X-Api-Key: DEMO_API_KEY
+
+{"customer":"DEMO_CUSTOMER","password":"DEMO_BODY_PASSWORD"}

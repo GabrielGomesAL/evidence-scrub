@@ -1,0 +1,23 @@
+node_modules/
+coverage/
+.test-tmp/
+.env
+.env.*
+!.env.example
+
+# Keep local captures and review bundles out of commits.
+*.har
+*.http
+*.pcap
+*.pcapng
+clean-*/
+evidence-output/
+
+# Committed fixtures must be entirely synthetic.
+!fixtures/**/*.har
+!fixtures/**/*.http
+!docs/example-bundle/sanitized.har
+
+.DS_Store
+Thumbs.db
+*.log

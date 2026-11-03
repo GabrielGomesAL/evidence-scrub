@@ -1,0 +1,19 @@
+{
+  "name": "evidence-scrub",
+  "version": "0.1.0",
+  "description": "Local-first HAR and HTTP evidence cleaner with conservative redaction and reviewable report bundles.",
+  "type": "module",
+  "private": true,
+  "license": "MIT",
+  "author": "Gabriel Gomes Almeida",
+  "engines": { "node": ">=22" },
+  "bin": { "evidence-scrub": "bin/evidence-scrub.mjs" },
+  "scripts": {
+    "test": "node --test",
+    "demo": "node bin/evidence-scrub.mjs fixtures/demo.har --out clean-demo"
+  },
+  "repository": { "type": "git", "url": "https://github.com/GabrielGomesAL/evidence-scrub.git" },
+  "bugs": { "url": "https://github.com/GabrielGomesAL/evidence-scrub/issues" },
+  "homepage": "https://github.com/GabrielGomesAL/evidence-scrub#readme",
+  "keywords": ["har", "redaction", "http", "security", "bug-bounty", "privacy", "evidence"]
+}
